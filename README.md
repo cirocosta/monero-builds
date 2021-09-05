@@ -18,6 +18,8 @@ believe this strikes a nice balance between consistency library-wise (builds
 the most important libraries from source) and simplicity (no use `depends` all
 the necessary tweaks that gitian uses to create reproducible binaries).
 
+see [build graph](./assets/build-graph.svg).
+
 
 ## consuming
 

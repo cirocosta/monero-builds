@@ -35,6 +35,9 @@ destinations:
 
 ---
 images:
-  - image: monero-master
-  - image: monero-release-v0.17
-  - image: monero-v0.17.2.3
+  - name: master
+    image: monero-master
+  - name: release-v0.17
+    image: monero-release-v0.17
+  - name: tag v0.17.2.3
+    image: monero-v0.17.2.3

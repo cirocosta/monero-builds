@@ -1,5 +1,8 @@
 ---
 images:
 - image: index.docker.io/utxobr/monero@sha256:0a2d6fca8b31cb6ddada5eafa98b80a53cdc64d360139f69541a750d63445e83
+  name: master
 - image: index.docker.io/utxobr/monero@sha256:2ddee5d8a4bebf907bb383e54499a7d525b1acb3d16cdc1ac8da98a7f32ddc59
+  name: release-v0.17
 - image: index.docker.io/utxobr/monero@sha256:2ddee5d8a4bebf907bb383e54499a7d525b1acb3d16cdc1ac8da98a7f32ddc59
+  name: tag v0.17.2.3
