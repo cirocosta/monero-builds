@@ -2,10 +2,10 @@ latest:
 	docker build -t utxobr/monero .
 
 
-images.lock.yaml: images.yaml
-	kbld -f $< \
+publish:
+	ytt -f ./config | kbld -f- \
 		--images-annotation=false \
-		--build-concurrency=1 > $@
+		--build-concurrency=1 > ./images.yaml
 
 
 assets/build-graph.svg: ./Dockerfile

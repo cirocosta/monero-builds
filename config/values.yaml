@@ -1,0 +1,20 @@
+#@data/values
+---
+images:
+  - name: master
+    repository: https://github.com/monero-project/monero
+    revision: master
+    description: |-
+      whatever latest commit is there on monero's `master` branch.
+
+  - name: v0.17.2.3
+    repository: https://github.com/monero-project/monero
+    revision: v0.17.2.3
+    description: |-
+      tag v0.17.2.3
+
+  - name: release-v0.17
+    repository: https://github.com/monero-project/monero
+    revision: release-v0.17
+    description: |-
+      release branch for the v0.17 series

@@ -1,0 +1,26 @@
+#@ load("@ytt:data", "data")
+
+apiVersion: kbld.k14s.io/v1alpha1
+kind: Config
+sources:
+  #@ for/end image in data.values.images:
+  - image: #@ image.name
+    path: .
+    docker:
+      build:
+        rawOptions: 
+          - #@ "--build-arg=MONERO_REPOSITORY=" + image.repository
+          - #@ "--build-arg=MONERO_REVISION=" + image.revision
+destinations:
+  #@ for/end image in data.values.images:
+  - image: #@ image.name
+    newImage: docker.io/utxobr/monero
+    tags:
+      - #@ image.name
+
+---
+images:
+  #@ for/end image in data.values.images:
+  - name: #@ image.name
+    image: #@ image.name
+    description: #@ image.description

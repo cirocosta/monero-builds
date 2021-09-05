@@ -1,43 +1,11 @@
-apiVersion: kbld.k14s.io/v1alpha1
-kind: Config
-sources:
-  - image: monero-master
-    path: .
-    docker:
-      build:
-        rawOptions: 
-          - --build-arg=MONERO_REVISION=master
-  - image: monero-release-v0.17
-    path: .
-    docker:
-      build:
-        rawOptions: 
-          - --build-arg=MONERO_REVISION=release-v0.17
-  - image: monero-v0.17.2.3
-    path: .
-    docker:
-      build:
-        rawOptions: 
-          - --build-arg=MONERO_REVISION=v0.17.2.3
-destinations:
-  - image: monero-master
-    newImage: docker.io/utxobr/monero
-    tags:
-      - master
-  - image: monero-release-v0.17
-    newImage: docker.io/utxobr/monero
-    tags:
-      - release-v0.17
-  - image: monero-v0.17.2.3
-    newImage: docker.io/utxobr/monero
-    tags:
-      - v0.17.2.3
-
 ---
 images:
-  - name: master
-    image: monero-master
-  - name: release-v0.17
-    image: monero-release-v0.17
-  - name: tag v0.17.2.3
-    image: monero-v0.17.2.3
+- description: whatever latest commit is there on monero's `master` branch.
+  image: index.docker.io/utxobr/monero@sha256:0a2d6fca8b31cb6ddada5eafa98b80a53cdc64d360139f69541a750d63445e83
+  name: master
+- description: tag v0.17.2.3
+  image: index.docker.io/utxobr/monero@sha256:2ddee5d8a4bebf907bb383e54499a7d525b1acb3d16cdc1ac8da98a7f32ddc59
+  name: v0.17.2.3
+- description: release branch for the v0.17 series
+  image: index.docker.io/utxobr/monero@sha256:2ddee5d8a4bebf907bb383e54499a7d525b1acb3d16cdc1ac8da98a7f32ddc59
+  name: release-v0.17

@@ -51,7 +51,7 @@ bit-by-bit reproducible builds - if you care about that, make sure you consume
 tagged releases (which yes, are reproducibly built by multiple collaborators -
 see [monero-project/gitian.sigs])[^1]
 
-see [./images.lock.yaml](./images.lock.yaml) for the digests.
+see [./images.yaml](./images.yaml) for the digests.
 
 [^1]: no, not boostrappable builds .. yet. maybe you'll be the one working on
   it?
