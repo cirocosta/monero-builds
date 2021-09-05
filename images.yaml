@@ -9,3 +9,6 @@ images:
 - description: release branch for the v0.17 series
   image: index.docker.io/utxobr/monero@sha256:2ddee5d8a4bebf907bb383e54499a7d525b1acb3d16cdc1ac8da98a7f32ddc59
   name: release-v0.17
+- description: sech1's custom monero build for p2pool
+  image: index.docker.io/utxobr/monero@sha256:eb7f4a0d3fac6eec158b070ea93cfe5b4d64d0bc4103e2845924e7eab69801d9
+  name: p2pool-api-v0.17

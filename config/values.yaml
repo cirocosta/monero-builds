@@ -18,3 +18,9 @@ images:
     revision: release-v0.17
     description: |-
       release branch for the v0.17 series
+
+  - name: p2pool-api-v0.17
+    repository: https://github.com/SChernykh/monero
+    revision: 9c82593b5bd19a1be8813b99d23b39b1eee61af0
+    description: |-
+      sech1's custom monero build for p2pool
