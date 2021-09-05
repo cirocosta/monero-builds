@@ -1,0 +1,40 @@
+apiVersion: kbld.k14s.io/v1alpha1
+kind: Config
+sources:
+  - image: monero-master
+    path: .
+    docker:
+      build:
+        rawOptions: 
+          - --build-arg=MONERO_REVISION=master
+  - image: monero-release-v0.17
+    path: .
+    docker:
+      build:
+        rawOptions: 
+          - --build-arg=MONERO_REVISION=release-v0.17
+  - image: monero-v0.17.2.3
+    path: .
+    docker:
+      build:
+        rawOptions: 
+          - --build-arg=MONERO_REVISION=v0.17.2.3
+destinations:
+  - image: monero-master
+    newImage: docker.io/utxobr/monero
+    tags:
+      - master
+  - image: monero-release-v0.17
+    newImage: docker.io/utxobr/monero
+    tags:
+      - release-v0.17
+  - image: monero-v0.17.2.3
+    newImage: docker.io/utxobr/monero
+    tags:
+      - v0.17.2.3
+
+---
+images:
+  - image: monero-master
+  - image: monero-release-v0.17
+  - image: monero-v0.17.2.3
