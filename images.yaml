@@ -5,6 +5,8 @@ images:
   - --build-arg=MONERO_REVISION=8fde011dbeb56ab92a909710567b964186671247
   description: whatever latest commit is there on monero's `master` branch.
   image: index.docker.io/utxobr/monero@sha256:5ca670b6834208337a3538abb1534da3eb033b5d0fc462e5bf3a4d90194fda4c
+  tags:
+  - master
 - args:
   - --build-arg=MONERO_REPOSITORY=https://github.com/SChernykh/monero
   - --build-arg=MONERO_REVISION=9c82593b5bd19a1be8813b99d23b39b1eee61af0
@@ -12,8 +14,12 @@ images:
     latest commits to the p2pool's temporary fork of monero based on the
     v0.17 release branch
   image: index.docker.io/utxobr/monero@sha256:6c05e8837b02934f68c8fc055d0131b6d0f136ce459bde4923f091f17e11821a
+  tags:
+  - p2pool-api-v0.17
 - args:
   - --build-arg=P2POOL_REPOSITORY=https://github.com/SChernykh/p2pool
   - --build-arg=P2POOL_REVISION=7ea1913a9d39efb9d65e76c0253187ca92a918ba
   description: latest commits to master branch of p2pool
   image: index.docker.io/utxobr/p2pool@sha256:ac135dad401d61853be88a2f6f78ba89b80f135573454de1d509b05c7aafaae3
+  tags:
+  - master

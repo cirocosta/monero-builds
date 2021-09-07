@@ -27,3 +27,4 @@ images:
   - image: #@ image.image + ":" + "_".join(image.tags)
     description: #@ image.description
     args: #@ build_args(image.args)
+    tags: #@ image.tags
