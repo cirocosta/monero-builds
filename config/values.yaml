@@ -1,26 +1,31 @@
-#@data/values
----
 images:
-  - name: master
-    repository: https://github.com/monero-project/monero
-    revision: master
+  - type: monero
+    image: utxobr/monero
+    tags: 
+      - master
+    args:
+      MONERO_REPOSITORY: https://github.com/monero-project/monero
+      MONERO_REVISION: gyr+gh://monero-project/monero#master
     description: |-
       whatever latest commit is there on monero's `master` branch.
 
-  - name: v0.17.2.3
-    repository: https://github.com/monero-project/monero
-    revision: v0.17.2.3
+  - type: monero
+    image: utxobr/monero
+    tags: 
+      - p2pool-api-v0.17
+    args:
+      MONERO_REPOSITORY: https://github.com/SChernykh/monero
+      MONERO_REVISION: gyr+gh://SChernykh/monero#p2pool-api-v0.17
     description: |-
-      tag v0.17.2.3
+      latest commits to the p2pool's temporary fork of monero based on the
+      v0.17 release branch
 
-  - name: release-v0.17
-    repository: https://github.com/monero-project/monero
-    revision: release-v0.17
+  - type: p2pool
+    image: utxobr/p2pool
+    tags: 
+      - master
+    args:
+      P2POOL_REPOSITORY: https://github.com/SChernykh/p2pool
+      P2POOL_REVISION: gyr+gh://SChernykh/p2pool#master
     description: |-
-      release branch for the v0.17 series
-
-  - name: p2pool-api-v0.17
-    repository: https://github.com/SChernykh/monero
-    revision: 9c82593b5bd19a1be8813b99d23b39b1eee61af0
-    description: |-
-      sech1's custom monero build for p2pool
+      latest commits to master branch of p2pool

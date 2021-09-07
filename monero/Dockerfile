@@ -8,6 +8,7 @@
 #	- DOCKER_BUILDKIT=true
 #
 
+
 FROM debian:bullseye AS debian
 FROM gcr.io/distroless/base-debian11:nonroot AS base
 
@@ -278,6 +279,7 @@ FROM builder AS monero
 	COPY --from=libusb 	/out 	/usr/local
 	COPY --from=udev 	/out 	/usr/local
 	COPY --from=hidapi 	/out 	/usr/local
+
 
 	RUN ldconfig
 	RUN --mount=type=cache,target=/ccache \

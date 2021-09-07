@@ -1,11 +1,5 @@
-latest:
-	docker build -t utxobr/monero .
-
-
 publish:
-	ytt -f ./config | kbld -f- \
-		--images-annotation=false \
-		--build-concurrency=1 > ./images.yaml
+	./hack/publish.sh
 
 
 assets/build-graph.svg: ./Dockerfile

@@ -1,26 +1,29 @@
 #@ load("@ytt:data", "data")
 
+#@ def build_args(d):
+#@   return ["--build-arg=" + x[0] + "=" + x[1] for x in dict(d).items()]
+#@ end
+
+
+---
 apiVersion: kbld.k14s.io/v1alpha1
 kind: Config
 sources:
   #@ for/end image in data.values.images:
-  - image: #@ image.name
-    path: .
+  - image: #@ image.image + ":" + "_".join(image.tags)
+    path: #@ image.type
     docker:
       build:
-        rawOptions: 
-          - #@ "--build-arg=MONERO_REPOSITORY=" + image.repository
-          - #@ "--build-arg=MONERO_REVISION=" + image.revision
+        rawOptions: #@ build_args(image.args)
 destinations:
   #@ for/end image in data.values.images:
-  - image: #@ image.name
-    newImage: docker.io/utxobr/monero
-    tags:
-      - #@ image.name
+  - image: #@ image.image + ":" + "_".join(image.tags)
+    newImage: #@ image.image
+    tags: #@ image.tags
 
 ---
 images:
   #@ for/end image in data.values.images:
-  - name: #@ image.name
-    image: #@ image.name
+  - image: #@ image.image + ":" + "_".join(image.tags)
     description: #@ image.description
+    args: #@ build_args(image.args)
