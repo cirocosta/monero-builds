@@ -1,7 +1,10 @@
 # syntax = docker/dockerfile:experimental
 
-FROM debian:bullseye AS debian
-FROM gcr.io/distroless/base-debian11:nonroot AS base
+ARG DEBIAN_IMAGE=debian:bullseye
+ARG DISTROLESS_IMAGE=gcr.io/distroless/base-debian11:nonroot
+
+FROM ${DEBIAN_IMAGE} AS debian
+FROM ${DISTROLESS_IMAGE} AS base
 
 
 #

@@ -1,9 +1,14 @@
+common_images: &common_images
+  DEBIAN_IMAGE: gyr+docker://debian:bullseye
+  DISTROLESS_IMAGE: gyr+docker://gcr.io/distroless/base-debian11:nonroot
+
 images:
   - type: monero
     image: utxobr/monero
     tags: 
       - master
     args:
+      <<: *common_images
       MONERO_REPOSITORY: https://github.com/monero-project/monero
       MONERO_REVISION: gyr+gh://monero-project/monero#master
     description: |-
@@ -14,6 +19,7 @@ images:
     tags: 
       - p2pool-api-v0.17
     args:
+      <<: *common_images
       MONERO_REPOSITORY: https://github.com/SChernykh/monero
       MONERO_REVISION: gyr+gh://SChernykh/monero#p2pool-api-v0.17
     description: |-
@@ -25,6 +31,7 @@ images:
     tags: 
       - master
     args:
+      <<: *common_images
       P2POOL_REPOSITORY: https://github.com/SChernykh/p2pool
       P2POOL_REVISION: gyr+gh://SChernykh/p2pool#master
     description: |-

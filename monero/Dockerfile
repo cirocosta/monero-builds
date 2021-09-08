@@ -8,9 +8,11 @@
 #	- DOCKER_BUILDKIT=true
 #
 
+ARG DEBIAN_IMAGE=debian:bullseye
+ARG DISTROLESS_IMAGE=gcr.io/distroless/base-debian11:nonroot
 
-FROM debian:bullseye AS debian
-FROM gcr.io/distroless/base-debian11:nonroot AS base
+FROM ${DEBIAN_IMAGE} AS debian
+FROM ${DISTROLESS_IMAGE} AS base
 
 
 #
