@@ -1,6 +1,7 @@
 ---
 images:
 - args:
+  - --build-arg=RUST_IMAGE=index.docker.io/library/rust:1.55.0-bullseye@sha256:a73ee7a37109aaeda7dda9011a555aed87299703ad93fa550bdba9fada8f6469
   - --build-arg=DEBIAN_IMAGE=index.docker.io/library/debian:bullseye@sha256:2c4d8b742bed07efe6d262942d9ebdbe2143f6aeb76d2935807e1b81385b974a
   - --build-arg=DISTROLESS_IMAGE=gcr.io/distroless/base-debian11:nonroot@sha256:369a36b04c8fa8a1385e941103ecd07e6554e59cc250fc853a41c6b30b6e6f56
   - --build-arg=NPROC=12
@@ -11,6 +12,7 @@ images:
   tags:
   - master
 - args:
+  - --build-arg=RUST_IMAGE=index.docker.io/library/rust:1.55.0-bullseye@sha256:a73ee7a37109aaeda7dda9011a555aed87299703ad93fa550bdba9fada8f6469
   - --build-arg=DEBIAN_IMAGE=index.docker.io/library/debian:bullseye@sha256:2c4d8b742bed07efe6d262942d9ebdbe2143f6aeb76d2935807e1b81385b974a
   - --build-arg=DISTROLESS_IMAGE=gcr.io/distroless/base-debian11:nonroot@sha256:369a36b04c8fa8a1385e941103ecd07e6554e59cc250fc853a41c6b30b6e6f56
   - --build-arg=NPROC=12
@@ -23,6 +25,7 @@ images:
   tags:
   - p2pool-api-v0.17
 - args:
+  - --build-arg=RUST_IMAGE=index.docker.io/library/rust:1.55.0-bullseye@sha256:a73ee7a37109aaeda7dda9011a555aed87299703ad93fa550bdba9fada8f6469
   - --build-arg=DEBIAN_IMAGE=index.docker.io/library/debian:bullseye@sha256:2c4d8b742bed07efe6d262942d9ebdbe2143f6aeb76d2935807e1b81385b974a
   - --build-arg=DISTROLESS_IMAGE=gcr.io/distroless/base-debian11:nonroot@sha256:369a36b04c8fa8a1385e941103ecd07e6554e59cc250fc853a41c6b30b6e6f56
   - --build-arg=NPROC=12
@@ -30,5 +33,16 @@ images:
   - --build-arg=P2POOL_REVISION=36ee76d4d2fa781dc8393e23b17c62baf8b1b3e1
   description: latest commits to master branch of p2pool
   image: index.docker.io/utxobr/p2pool@sha256:0f08fde51cf7d5ccb43cc88a6c44f4b1e42444530341a2d003134454376d4038
+  tags:
+  - master
+- args:
+  - --build-arg=RUST_IMAGE=index.docker.io/library/rust:1.55.0-bullseye@sha256:a73ee7a37109aaeda7dda9011a555aed87299703ad93fa550bdba9fada8f6469
+  - --build-arg=DEBIAN_IMAGE=index.docker.io/library/debian:bullseye@sha256:2c4d8b742bed07efe6d262942d9ebdbe2143f6aeb76d2935807e1b81385b974a
+  - --build-arg=DISTROLESS_IMAGE=gcr.io/distroless/base-debian11:nonroot@sha256:369a36b04c8fa8a1385e941103ecd07e6554e59cc250fc853a41c6b30b6e6f56
+  - --build-arg=NPROC=12
+  - --build-arg=XMRBTCSWAP_REPOSITORY=https://github.com/comit-network/xmr-btc-swap
+  - --build-arg=XMRBTCSWAP_REVISION=1a2b42ccd1059725a84ed61ee5fc9e4242f96ee4
+  description: latest commits to master branch of p2pool
+  image: index.docker.io/utxobr/xmr-btc-swap@sha256:b3b4c269462ddde2ea8ce03411cd9f231a1d0cad04a33cd39b4613ddacd55faf
   tags:
   - master

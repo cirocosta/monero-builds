@@ -1,4 +1,4 @@
-# syntax = docker/dockerfile:experimental
+# syntax = docker/dockerfile:1.3
 
 ARG DEBIAN_IMAGE=debian:bullseye
 ARG DISTROLESS_IMAGE=gcr.io/distroless/base-debian11:nonroot
@@ -17,7 +17,7 @@ FROM debian AS nproc
 	RUN test -z "$NPROC" && nproc > /nproc || echo -n "$NPROC" > /nproc
 
 
-# 
+#
 #	setup build dependencies
 #
 FROM debian AS builder
@@ -66,7 +66,7 @@ FROM builder AS p2pool
 		make -j$(cat /nproc)
 
 
-# 
+#
 #	final stage that will be included in the container image
 #
 #

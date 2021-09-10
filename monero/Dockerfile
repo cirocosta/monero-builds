@@ -1,4 +1,4 @@
-# syntax = docker/dockerfile:experimental
+# syntax = docker/dockerfile:1.3
 
 #
 # 	Multistage docker build using experimental docker syntax features.

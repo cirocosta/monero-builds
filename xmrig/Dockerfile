@@ -49,13 +49,11 @@ FROM builder AS libuv
 	RUN set -ex \
 	    && curl -sSLO https://github.com/libuv/libuv/archive/v${LIBUV_VERSION}.tar.gz \
 	    && echo "${LIBUV_HASH}  v${LIBUV_VERSION}.tar.gz" | sha256sum -c \
-	    && tar -xzf v${LIBUV_VERSION}.tar.gz
-
-	RUN set -ex \
-	    && cd libuv-${LIBUV_VERSION} \
+	    && tar -xzf v${LIBUV_VERSION}.tar.gz --strip-components=1 \
 	    && ./autogen.sh \
-	    && ./configure --disable-shared \
-	    && make -j$(cat /nproc)
+	    && ./configure --disable-shared --enable-static
+
+	RUN make -j$(cat /nproc)
 
 
 #
@@ -71,13 +69,10 @@ FROM builder AS hwloc
 	RUN set -ex \
 	    && curl -sSLO https://download.open-mpi.org/release/hwloc/v2.5/hwloc-${HWLOC_VERSION}.tar.gz \
 	    && echo "${HWLOC_HASH}  hwloc-${HWLOC_VERSION}.tar.gz" | sha256sum -c \
-	    && tar -xzf hwloc-${HWLOC_VERSION}.tar.gz \
+	    && tar -xzf hwloc-${HWLOC_VERSION}.tar.gz --strip-components=1 \
+	    && ./configure --disable-shared --enable-static --disable-io --disable-libudev --disable-libxml2
 
-	RUN set -ex \
-	    && cd hwloc-${HWLOC_VERSION} \
-	    && ./configure --disable-shared --enable-static --disable-io --disable-libudev --disable-libxml2 \
-	    && make -j$(cat /nproc)
-
+	RUN make -j$(cat /nproc)
 
 
 #
@@ -93,12 +88,10 @@ FROM builder AS openssl
 	RUN set -ex \
 	    && curl -s -O https://www.openssl.org/source/openssl-${OPENSSL_VERSION}.tar.gz \
 	    && echo "${OPENSSL_HASH}  openssl-${OPENSSL_VERSION}.tar.gz" | sha256sum -c \
-	    && tar -xzf openssl-${OPENSSL_VERSION}.tar.gz
+	    && tar -xzf openssl-${OPENSSL_VERSION}.tar.gz --strip-components=1 \
+	    && ./config --static -no-shared -no-asm -no-zlib -no-comp -no-dgram -no-filenames -no-cms
 
-	RUN set -ex \
-	    && cd openssl-${OPENSSL_VERSION} \
-	    && ./config -no-shared -no-asm -no-zlib -no-comp -no-dgram -no-filenames -no-cms \
-	    && make -j$(cat /nproc)
+	RUN make -j$(cat /nproc)
 
 
 #
@@ -117,13 +110,28 @@ FROM builder AS xmrig
 	    git checkout ${XMRIG_REVISION}
 
 
-	COPY --from=openssl /src/include 	./deps/include
-	COPY --from=openssl /src/libcrypto.a 	./deps/lib
-	COPY --from=openssl /src/libssl.a 	./deps/lib
+	COPY --from=openssl	/src/include 			/openssl/include
+	COPY --from=openssl	/src/libcrypto.a 		/openssl/lib/libcrypto.a
+	COPY --from=openssl	/src/libssl.a 			/openssl/lib/libssl.a
+
+	COPY --from=hwloc 	/src/include 			/hwloc/include
+	COPY --from=hwloc 	/src/hwloc/.libs 		/hwloc/lib/
+
+	COPY --from=libuv 	/src/include 			/uv/include
+	COPY --from=libuv 	/src/.libs	 		/uv/lib
+
 
 	RUN --mount=type=cache,target=/ccache \
 		mkdir build && cd build && \
-		cmake -DBUILD_STATIC=ON  .. && \
+		cmake \
+			-DBUILD_STATIC=ON \
+			-DHWLOC_INCLUDE_DIR=/hwloc/include \
+			-DHWLOC_LIBRARY=/hwloc/lib \
+			-DOPENSSL_ROOT_DIR=/openssl \
+			-DOPENSSL_INCLUDE_DIR=/openssl/include \
+			-DUV_INCLUDE_DIR=/uv/include \
+			-DUV_LIBRARY=/uv/lib \
+			.. && \
 		make -j$(cat /nproc)
 
 

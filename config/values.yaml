@@ -1,4 +1,5 @@
 common_images: &common_images
+  RUST_IMAGE: gyr+docker://rust:1.55.0-bullseye
   DEBIAN_IMAGE: gyr+docker://debian:bullseye
   DISTROLESS_IMAGE: gyr+docker://gcr.io/distroless/base-debian11:nonroot
   NPROC: "12"
@@ -35,5 +36,16 @@ images:
       <<: *common_images
       P2POOL_REPOSITORY: https://github.com/SChernykh/p2pool
       P2POOL_REVISION: gyr+gh://SChernykh/p2pool#master
+    description: |-
+      latest commits to master branch of p2pool
+
+  - type: xmr-btc-swap
+    image: utxobr/xmr-btc-swap
+    tags:
+      - master
+    args:
+      <<: *common_images
+      XMRBTCSWAP_REPOSITORY: https://github.com/comit-network/xmr-btc-swap
+      XMRBTCSWAP_REVISION: gyr+gh://comit-network/xmr-btc-swap#master
     description: |-
       latest commits to master branch of p2pool
