@@ -3,29 +3,32 @@ images:
 - args:
   - --build-arg=DEBIAN_IMAGE=index.docker.io/library/debian:bullseye@sha256:2c4d8b742bed07efe6d262942d9ebdbe2143f6aeb76d2935807e1b81385b974a
   - --build-arg=DISTROLESS_IMAGE=gcr.io/distroless/base-debian11:nonroot@sha256:369a36b04c8fa8a1385e941103ecd07e6554e59cc250fc853a41c6b30b6e6f56
+  - --build-arg=NPROC=12
   - --build-arg=MONERO_REPOSITORY=https://github.com/monero-project/monero
-  - --build-arg=MONERO_REVISION=8fde011dbeb56ab92a909710567b964186671247
+  - --build-arg=MONERO_REVISION=a39b1d56c8835798e2f5e3cc43c33b5f2d8e13da
   description: whatever latest commit is there on monero's `master` branch.
-  image: index.docker.io/utxobr/monero@sha256:c6018060fcae41af547c115178aeb3f77bbad72d022a87219bc1e6eabc5c92b0
+  image: index.docker.io/utxobr/monero@sha256:122497f6fa42fe949d10a44ca872b82594e5617b5197922f3e996436788fbd60
   tags:
   - master
 - args:
   - --build-arg=DEBIAN_IMAGE=index.docker.io/library/debian:bullseye@sha256:2c4d8b742bed07efe6d262942d9ebdbe2143f6aeb76d2935807e1b81385b974a
   - --build-arg=DISTROLESS_IMAGE=gcr.io/distroless/base-debian11:nonroot@sha256:369a36b04c8fa8a1385e941103ecd07e6554e59cc250fc853a41c6b30b6e6f56
+  - --build-arg=NPROC=12
   - --build-arg=MONERO_REPOSITORY=https://github.com/SChernykh/monero
   - --build-arg=MONERO_REVISION=9c82593b5bd19a1be8813b99d23b39b1eee61af0
   description: |-
     latest commits to the p2pool's temporary fork of monero based on the
     v0.17 release branch
-  image: index.docker.io/utxobr/monero@sha256:c12da3f1174ba3b4600f304ac52709f3646f970a54921e76a4fedc4ed761f1b1
+  image: index.docker.io/utxobr/monero@sha256:2fd4fae727b916d022c10175c8e3476b3e5ca608849cf7e1382897ae5ed4be7a
   tags:
   - p2pool-api-v0.17
 - args:
   - --build-arg=DEBIAN_IMAGE=index.docker.io/library/debian:bullseye@sha256:2c4d8b742bed07efe6d262942d9ebdbe2143f6aeb76d2935807e1b81385b974a
   - --build-arg=DISTROLESS_IMAGE=gcr.io/distroless/base-debian11:nonroot@sha256:369a36b04c8fa8a1385e941103ecd07e6554e59cc250fc853a41c6b30b6e6f56
+  - --build-arg=NPROC=12
   - --build-arg=P2POOL_REPOSITORY=https://github.com/SChernykh/p2pool
-  - --build-arg=P2POOL_REVISION=ac5243a9a6e72b7938da17ede5f7a8501f5cc2e3
+  - --build-arg=P2POOL_REVISION=36ee76d4d2fa781dc8393e23b17c62baf8b1b3e1
   description: latest commits to master branch of p2pool
-  image: index.docker.io/utxobr/p2pool@sha256:cc2f458b052c5c4d9b5319247a8f7c8fb5840d09db47f74e7299831808d6b0ca
+  image: index.docker.io/utxobr/p2pool@sha256:0f08fde51cf7d5ccb43cc88a6c44f4b1e42444530341a2d003134454376d4038
   tags:
   - master

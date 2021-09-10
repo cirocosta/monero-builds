@@ -25,7 +25,7 @@ FROM debian AS nproc
 	RUN test -z "$NPROC" && nproc > /nproc || echo -n "$NPROC" > /nproc
 
 
-# 
+#
 #	setup build dependencies
 #
 FROM debian AS builder
@@ -228,7 +228,7 @@ FROM builder AS libusb
 #
 #	build hidapi from source
 #
- FROM builder AS hidapi
+FROM builder AS hidapi
 
 	COPY --from=udev 	/out 				/usr/local
 	COPY --from=libusb 	/out 				/usr/local
@@ -250,7 +250,60 @@ FROM builder AS libusb
 	    && make install -j$(cat /nproc)
 
 
-# 
+#
+#	build expat from source
+#
+ FROM builder AS libexpat
+
+ 	ARG LIBEXPAT_VERSION=2.4.1
+ 	ARG LIBEXPAT_VERSION_UNDERSCORE=2_4_1
+ 	ARG LIBEXPAT_HASH=2f9b6a580b94577b150a7d5617ad4643a4301a6616ff459307df3e225bcfbf40
+
+ 	RUN set -ex \
+	    && curl -SOL https://github.com/libexpat/libexpat/releases/download/R_${LIBEXPAT_VERSION_UNDERSCORE}/expat-${LIBEXPAT_VERSION}.tar.bz2 \
+	    && echo "${LIBEXPAT_HASH} expat-${LIBEXPAT_VERSION}.tar.bz2" | sha256sum -c \
+	    && tar -xf expat-${LIBEXPAT_VERSION}.tar.bz2 --strip-components=1 \
+	    && mkdir /out \
+	    && ./configure \
+	    	--enable-static \
+		--disable-shared \
+		--prefix=/out \
+	    && make -j$(cat /nproc) \
+	    && make install -j$(cat /nproc)
+
+#
+#	build unbound from source
+#
+ FROM builder AS unbound
+
+ 	ARG UNBOUND_VERSION=1.13.2
+ 	ARG UNBOUND_HASH=0a13b547f3b92a026b5ebd0423f54c991e5718037fd9f72445817f6a040e1a83
+
+	COPY --from=libexpat 	/out 	/usr/local/libexpat
+	COPY --from=openssl 	/out 	/usr/local/openssl
+
+ 	RUN set -ex \
+	    && curl -SOL https://www.nlnetlabs.nl/downloads/unbound/unbound-${UNBOUND_VERSION}.tar.gz \
+	    && echo "${UNBOUND_HASH} unbound-${UNBOUND_VERSION}.tar.gz" | sha256sum -c \
+	    && tar xzf unbound-1.13.2.tar.gz --strip-components=1 \
+	    && ./configure \
+	    	--disable-shared \
+		--enable-static \
+		--without-pyunbound \
+		--prefix=/out \
+		--with-libexpat=/usr/local/libexpat \
+		--with-ssl=/usr/local/openssl \
+		--with-libevent=no \
+		--without-pythonmodule \
+		--disable-flto \
+		--with-pthreads \
+		--with-libunbound-only \
+		--with-pic \
+	    && make -j$(cat /nproc) \
+	    && make install -j$(cat /nproc)
+
+
+#
 #	build monero from source
 #
 FROM builder AS monero
@@ -281,6 +334,7 @@ FROM builder AS monero
 	COPY --from=libusb 	/out 	/usr/local
 	COPY --from=udev 	/out 	/usr/local
 	COPY --from=hidapi 	/out 	/usr/local
+	COPY --from=unbound 	/out 	/usr/local
 
 
 	RUN ldconfig
@@ -294,7 +348,7 @@ FROM builder AS monero
 	RUN mkdir /data
 
 
-# 
+#
 #	final stage that will be included in the container image
 #
 #	note.: the sha256sum of this will not necessarily match the ones

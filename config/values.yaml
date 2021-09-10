@@ -1,11 +1,12 @@
 common_images: &common_images
   DEBIAN_IMAGE: gyr+docker://debian:bullseye
   DISTROLESS_IMAGE: gyr+docker://gcr.io/distroless/base-debian11:nonroot
+  NPROC: "12"
 
 images:
   - type: monero
     image: utxobr/monero
-    tags: 
+    tags:
       - master
     args:
       <<: *common_images
@@ -16,7 +17,7 @@ images:
 
   - type: monero
     image: utxobr/monero
-    tags: 
+    tags:
       - p2pool-api-v0.17
     args:
       <<: *common_images
@@ -28,7 +29,7 @@ images:
 
   - type: p2pool
     image: utxobr/p2pool
-    tags: 
+    tags:
       - master
     args:
       <<: *common_images
