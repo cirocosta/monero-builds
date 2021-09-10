@@ -285,7 +285,7 @@ FROM builder AS hidapi
  	RUN set -ex \
 	    && curl -SOL https://www.nlnetlabs.nl/downloads/unbound/unbound-${UNBOUND_VERSION}.tar.gz \
 	    && echo "${UNBOUND_HASH} unbound-${UNBOUND_VERSION}.tar.gz" | sha256sum -c \
-	    && tar xzf unbound-1.13.2.tar.gz --strip-components=1 \
+	    && tar xzf unbound-${UNBOUND_VERSION}.tar.gz --strip-components=1 \
 	    && ./configure \
 	    	--disable-shared \
 		--enable-static \
