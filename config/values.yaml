@@ -14,7 +14,8 @@ images:
       MONERO_REPOSITORY: https://github.com/monero-project/monero
       MONERO_REVISION: gyr+gh://monero-project/monero#master
     description: |-
-      whatever latest commit is there on monero's `master` branch.
+      whatever latest commit is there on monero's
+      `master` branch.
 
   - type: monero
     image: utxobr/monero
@@ -25,8 +26,9 @@ images:
       MONERO_REPOSITORY: https://github.com/SChernykh/monero
       MONERO_REVISION: gyr+gh://SChernykh/monero#p2pool-api-v0.17
     description: |-
-      latest commits to the p2pool's temporary fork of monero based on the
-      v0.17 release branch
+      latest commits to the p2pool's temporary
+      fork of monero based on the v0.17 release
+      branch
 
   - type: p2pool
     image: utxobr/p2pool
@@ -37,7 +39,8 @@ images:
       P2POOL_REPOSITORY: https://github.com/SChernykh/p2pool
       P2POOL_REVISION: gyr+gh://SChernykh/p2pool#master
     description: |-
-      latest commits to master branch of p2pool
+      p2p binary builds from latest commits of
+      master branch of p2pool
 
   - type: xmr-btc-swap
     image: utxobr/xmr-btc-swap
@@ -48,4 +51,28 @@ images:
       XMRBTCSWAP_REPOSITORY: https://github.com/comit-network/xmr-btc-swap
       XMRBTCSWAP_REVISION: gyr+gh://comit-network/xmr-btc-swap#master
     description: |-
-      latest commits to master branch of p2pool
+      asb, swap, and kraken_ticker binary builds
+      from comit-network's master branch
+
+  - type: electrs
+    image: utxobr/electrs
+    tags:
+      - master
+    args:
+      <<: *common_images
+      ELECTRS_REPOSITORY: https://github.com/romanz/electrs
+      ELECTRS_REVISION: gyr+gh://romanz/electrs#master
+    description: |-
+      electrs build from romanz' master branch
+
+  - type: bitcoin
+    image: utxobr/bitcoin
+    tags:
+      - master
+    args:
+      <<: *common_images
+      BITCOIN_REPOSITORY: https://github.com/bitcoin/bitcoin
+      BITCOIN_REVISION: gyr+gh://bitcoin/bitcoin#master
+    description: |-
+      bitcoind, bitcoin-cli, bitcoin-tx, and
+      bitcoin-util from `master` branch.

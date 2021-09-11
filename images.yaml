@@ -7,8 +7,10 @@ images:
   - --build-arg=NPROC=12
   - --build-arg=MONERO_REPOSITORY=https://github.com/monero-project/monero
   - --build-arg=MONERO_REVISION=a39b1d56c8835798e2f5e3cc43c33b5f2d8e13da
-  description: whatever latest commit is there on monero's `master` branch.
-  image: index.docker.io/utxobr/monero@sha256:122497f6fa42fe949d10a44ca872b82594e5617b5197922f3e996436788fbd60
+  description: |-
+    whatever latest commit is there on monero's
+    `master` branch.
+  image: index.docker.io/utxobr/monero@sha256:04f6700c73a32818f6130095925bdedbede0b2f7ff9e22c7c0a84c5de8596f76
   tags:
   - master
 - args:
@@ -17,11 +19,12 @@ images:
   - --build-arg=DISTROLESS_IMAGE=gcr.io/distroless/base-debian11:nonroot@sha256:369a36b04c8fa8a1385e941103ecd07e6554e59cc250fc853a41c6b30b6e6f56
   - --build-arg=NPROC=12
   - --build-arg=MONERO_REPOSITORY=https://github.com/SChernykh/monero
-  - --build-arg=MONERO_REVISION=9c82593b5bd19a1be8813b99d23b39b1eee61af0
+  - --build-arg=MONERO_REVISION=d35fd046809b216c6d4fa239d3ceb0d7af33ff9a
   description: |-
-    latest commits to the p2pool's temporary fork of monero based on the
-    v0.17 release branch
-  image: index.docker.io/utxobr/monero@sha256:2fd4fae727b916d022c10175c8e3476b3e5ca608849cf7e1382897ae5ed4be7a
+    latest commits to the p2pool's temporary
+    fork of monero based on the v0.17 release
+    branch
+  image: index.docker.io/utxobr/monero@sha256:49af2c36436a70a53eff11aba7548b1141610188521080b6c22d02b9b1dde480
   tags:
   - p2pool-api-v0.17
 - args:
@@ -30,9 +33,11 @@ images:
   - --build-arg=DISTROLESS_IMAGE=gcr.io/distroless/base-debian11:nonroot@sha256:369a36b04c8fa8a1385e941103ecd07e6554e59cc250fc853a41c6b30b6e6f56
   - --build-arg=NPROC=12
   - --build-arg=P2POOL_REPOSITORY=https://github.com/SChernykh/p2pool
-  - --build-arg=P2POOL_REVISION=36ee76d4d2fa781dc8393e23b17c62baf8b1b3e1
-  description: latest commits to master branch of p2pool
-  image: index.docker.io/utxobr/p2pool@sha256:0f08fde51cf7d5ccb43cc88a6c44f4b1e42444530341a2d003134454376d4038
+  - --build-arg=P2POOL_REVISION=fc88b9c9b29dd128b98fd279ffae3cfb5bed701b
+  description: |-
+    p2p binary builds from latest commits of
+    master branch of p2pool
+  image: index.docker.io/utxobr/p2pool@sha256:c70d86864105488a17981b4fceb315e9eef7e4f87214311b322acd15a99aeb37
   tags:
   - master
 - args:
@@ -42,7 +47,33 @@ images:
   - --build-arg=NPROC=12
   - --build-arg=XMRBTCSWAP_REPOSITORY=https://github.com/comit-network/xmr-btc-swap
   - --build-arg=XMRBTCSWAP_REVISION=1a2b42ccd1059725a84ed61ee5fc9e4242f96ee4
-  description: latest commits to master branch of p2pool
-  image: index.docker.io/utxobr/xmr-btc-swap@sha256:b3b4c269462ddde2ea8ce03411cd9f231a1d0cad04a33cd39b4613ddacd55faf
+  description: |-
+    asb, swap, and kraken_ticker binary builds
+    from comit-network's master branch
+  image: index.docker.io/utxobr/xmr-btc-swap@sha256:d115dd0ec446245da57903c4a9611e8ea4482626956879ac204f6deb879dd052
+  tags:
+  - master
+- args:
+  - --build-arg=RUST_IMAGE=index.docker.io/library/rust:1.55.0-bullseye@sha256:a73ee7a37109aaeda7dda9011a555aed87299703ad93fa550bdba9fada8f6469
+  - --build-arg=DEBIAN_IMAGE=index.docker.io/library/debian:bullseye@sha256:2c4d8b742bed07efe6d262942d9ebdbe2143f6aeb76d2935807e1b81385b974a
+  - --build-arg=DISTROLESS_IMAGE=gcr.io/distroless/base-debian11:nonroot@sha256:369a36b04c8fa8a1385e941103ecd07e6554e59cc250fc853a41c6b30b6e6f56
+  - --build-arg=NPROC=12
+  - --build-arg=ELECTRS_REPOSITORY=https://github.com/romanz/electrs
+  - --build-arg=ELECTRS_REVISION=a97150292aeb31dfde43be3d653813438837fcbf
+  description: electrs build from romanz' master branch
+  image: index.docker.io/utxobr/electrs@sha256:ec435d9c78fb28bc8e5929b1eb24479e3dc98bcb9e9bbe933a820cf8b2a3104e
+  tags:
+  - master
+- args:
+  - --build-arg=RUST_IMAGE=index.docker.io/library/rust:1.55.0-bullseye@sha256:a73ee7a37109aaeda7dda9011a555aed87299703ad93fa550bdba9fada8f6469
+  - --build-arg=DEBIAN_IMAGE=index.docker.io/library/debian:bullseye@sha256:2c4d8b742bed07efe6d262942d9ebdbe2143f6aeb76d2935807e1b81385b974a
+  - --build-arg=DISTROLESS_IMAGE=gcr.io/distroless/base-debian11:nonroot@sha256:369a36b04c8fa8a1385e941103ecd07e6554e59cc250fc853a41c6b30b6e6f56
+  - --build-arg=NPROC=12
+  - --build-arg=BITCOIN_REPOSITORY=https://github.com/bitcoin/bitcoin
+  - --build-arg=BITCOIN_REVISION=5c0f46ca46e23a161649b5150baa01020dc85e48
+  description: |-
+    bitcoind, bitcoin-cli, bitcoin-tx, and
+    bitcoin-util from `master` branch.
+  image: index.docker.io/utxobr/bitcoin@sha256:fda4ae1582bba3d79015bb5e02667ca4f8b5a3fcfe837911c564f915e7896715
   tags:
   - master
