@@ -1,21 +1,21 @@
 ---
 images:
 - args:
-  - --build-arg=RUST_IMAGE=index.docker.io/library/rust:1.55.0-bullseye@sha256:81428aaedcfa28385c2bfd7e37d3e8f146b70f52526ef229ad94f50cf6bc7938
-  - --build-arg=DEBIAN_IMAGE=index.docker.io/library/debian:bullseye@sha256:2c22645bfe97aa1ed1c930adf5970fee3454f9a42a19214051ec677cba805712
+  - --build-arg=RUST_IMAGE=index.docker.io/library/rust:1.55.0-bullseye@sha256:1b0490ed32286c0995520b64b6b6a98cc32b6e1be44228fdd3e75a7f1105ca28
+  - --build-arg=DEBIAN_IMAGE=index.docker.io/library/debian:bullseye@sha256:826d8850098b954c3d67c2e45ea7a08fa681c128126ba01b35bd2689b1bb2e04
   - --build-arg=DISTROLESS_IMAGE=gcr.io/distroless/base-debian11:nonroot@sha256:21a86d92771aa0ee8fc238e94f1a3a5fbb2c0ad55adda8ad626a6dd1e7faaa8f
   - --build-arg=NPROC=12
   - --build-arg=MONERO_REPOSITORY=https://github.com/monero-project/monero
-  - --build-arg=MONERO_REVISION=b58a9fb12e6438aee854cdfab8a6208ea22f6391
+  - --build-arg=MONERO_REVISION=c458d5fe401f460c5eed2146f74d77e1f840a19c
   description: |-
     whatever latest commit is there on monero's
     `master` branch.
-  image: index.docker.io/utxobr/monero@sha256:3c38b5c29b39cc285cc36bc7980774436d73dda91fc89a1727c641e7b96c4738
+  image: index.docker.io/utxobr/monero@sha256:31ea815b3458710cdbfdfebba93d806519703939f8e1e2c698d0171ce5e73a61
   tags:
   - master
 - args:
-  - --build-arg=RUST_IMAGE=index.docker.io/library/rust:1.55.0-bullseye@sha256:81428aaedcfa28385c2bfd7e37d3e8f146b70f52526ef229ad94f50cf6bc7938
-  - --build-arg=DEBIAN_IMAGE=index.docker.io/library/debian:bullseye@sha256:2c22645bfe97aa1ed1c930adf5970fee3454f9a42a19214051ec677cba805712
+  - --build-arg=RUST_IMAGE=index.docker.io/library/rust:1.55.0-bullseye@sha256:1b0490ed32286c0995520b64b6b6a98cc32b6e1be44228fdd3e75a7f1105ca28
+  - --build-arg=DEBIAN_IMAGE=index.docker.io/library/debian:bullseye@sha256:826d8850098b954c3d67c2e45ea7a08fa681c128126ba01b35bd2689b1bb2e04
   - --build-arg=DISTROLESS_IMAGE=gcr.io/distroless/base-debian11:nonroot@sha256:21a86d92771aa0ee8fc238e94f1a3a5fbb2c0ad55adda8ad626a6dd1e7faaa8f
   - --build-arg=NPROC=12
   - --build-arg=MONERO_REPOSITORY=https://github.com/SChernykh/monero
@@ -24,56 +24,56 @@ images:
     latest commits to the p2pool's temporary
     fork of monero based on the v0.17 release
     branch
-  image: index.docker.io/utxobr/monero@sha256:f9fe039897b558cbf8488bdf0c5fce729f91e64c61e48d0f3db6784df713252d
+  image: index.docker.io/utxobr/monero@sha256:4b5fe248112e8f7c79cc8191573b264aa8b8d4a7e90d4b148025107a1eae6e2d
   tags:
   - p2pool-api-v0.17
 - args:
-  - --build-arg=RUST_IMAGE=index.docker.io/library/rust:1.55.0-bullseye@sha256:81428aaedcfa28385c2bfd7e37d3e8f146b70f52526ef229ad94f50cf6bc7938
-  - --build-arg=DEBIAN_IMAGE=index.docker.io/library/debian:bullseye@sha256:2c22645bfe97aa1ed1c930adf5970fee3454f9a42a19214051ec677cba805712
+  - --build-arg=RUST_IMAGE=index.docker.io/library/rust:1.55.0-bullseye@sha256:1b0490ed32286c0995520b64b6b6a98cc32b6e1be44228fdd3e75a7f1105ca28
+  - --build-arg=DEBIAN_IMAGE=index.docker.io/library/debian:bullseye@sha256:826d8850098b954c3d67c2e45ea7a08fa681c128126ba01b35bd2689b1bb2e04
   - --build-arg=DISTROLESS_IMAGE=gcr.io/distroless/base-debian11:nonroot@sha256:21a86d92771aa0ee8fc238e94f1a3a5fbb2c0ad55adda8ad626a6dd1e7faaa8f
   - --build-arg=NPROC=12
   - --build-arg=P2POOL_REPOSITORY=https://github.com/SChernykh/p2pool
-  - --build-arg=P2POOL_REVISION=af2a8eeb088e64bf9601891531919a634653064f
+  - --build-arg=P2POOL_REVISION=60a8538e0ca744e8fa9584bc1777031ca5b1f685
   description: |-
     p2p binary builds from latest commits of
     master branch of p2pool
-  image: index.docker.io/utxobr/p2pool@sha256:3ea9274fbf50051101a7bc4561c425b3a31cd96b4bbefb20a01754051d0e9c8f
+  image: index.docker.io/utxobr/p2pool@sha256:c0c20fa38ebfeb6461af5372ea53adb9189b79e08af8ded334f885dbebcb3c8e
   tags:
   - master
 - args:
-  - --build-arg=RUST_IMAGE=index.docker.io/library/rust:1.55.0-bullseye@sha256:81428aaedcfa28385c2bfd7e37d3e8f146b70f52526ef229ad94f50cf6bc7938
-  - --build-arg=DEBIAN_IMAGE=index.docker.io/library/debian:bullseye@sha256:2c22645bfe97aa1ed1c930adf5970fee3454f9a42a19214051ec677cba805712
+  - --build-arg=RUST_IMAGE=index.docker.io/library/rust:1.55.0-bullseye@sha256:1b0490ed32286c0995520b64b6b6a98cc32b6e1be44228fdd3e75a7f1105ca28
+  - --build-arg=DEBIAN_IMAGE=index.docker.io/library/debian:bullseye@sha256:826d8850098b954c3d67c2e45ea7a08fa681c128126ba01b35bd2689b1bb2e04
   - --build-arg=DISTROLESS_IMAGE=gcr.io/distroless/base-debian11:nonroot@sha256:21a86d92771aa0ee8fc238e94f1a3a5fbb2c0ad55adda8ad626a6dd1e7faaa8f
   - --build-arg=NPROC=12
   - --build-arg=XMRBTCSWAP_REPOSITORY=https://github.com/comit-network/xmr-btc-swap
-  - --build-arg=XMRBTCSWAP_REVISION=90bf702b991abae7bc18fd3319843e1bb87b186d
+  - --build-arg=XMRBTCSWAP_REVISION=b9d2e9c3aed01c724e392c7b202a9c07d6c7e400
   description: |-
     asb, swap, and kraken_ticker binary builds
     from comit-network's master branch
-  image: index.docker.io/utxobr/xmr-btc-swap@sha256:9a17a3e3d16578e2546e05552661cb4f04ae6808dc5255e4d50b836c3a0e9e82
+  image: index.docker.io/utxobr/xmr-btc-swap@sha256:eb5e93b109256737ec8b1c08dd44e49185aef04712a516a31ef37d1329616a0c
   tags:
   - master
 - args:
-  - --build-arg=RUST_IMAGE=index.docker.io/library/rust:1.55.0-bullseye@sha256:81428aaedcfa28385c2bfd7e37d3e8f146b70f52526ef229ad94f50cf6bc7938
-  - --build-arg=DEBIAN_IMAGE=index.docker.io/library/debian:bullseye@sha256:2c22645bfe97aa1ed1c930adf5970fee3454f9a42a19214051ec677cba805712
+  - --build-arg=RUST_IMAGE=index.docker.io/library/rust:1.55.0-bullseye@sha256:1b0490ed32286c0995520b64b6b6a98cc32b6e1be44228fdd3e75a7f1105ca28
+  - --build-arg=DEBIAN_IMAGE=index.docker.io/library/debian:bullseye@sha256:826d8850098b954c3d67c2e45ea7a08fa681c128126ba01b35bd2689b1bb2e04
   - --build-arg=DISTROLESS_IMAGE=gcr.io/distroless/base-debian11:nonroot@sha256:21a86d92771aa0ee8fc238e94f1a3a5fbb2c0ad55adda8ad626a6dd1e7faaa8f
   - --build-arg=NPROC=12
   - --build-arg=ELECTRS_REPOSITORY=https://github.com/romanz/electrs
-  - --build-arg=ELECTRS_REVISION=2ea514373e4198238ea81a40cebe4652e496f5b6
+  - --build-arg=ELECTRS_REVISION=b94c98fc310dd9ccda4e14c3be05e9cfc1815657
   description: electrs build from romanz' master branch
-  image: index.docker.io/utxobr/electrs@sha256:1c135f307b86ebb95d29195d525739f710c57b368f54138fecb1277e1d752e6c
+  image: index.docker.io/utxobr/electrs@sha256:fcefdb63a684ff301e99c0ded9cefd8c78330d46053c105f2ed8960b5a2c4907
   tags:
   - master
 - args:
-  - --build-arg=RUST_IMAGE=index.docker.io/library/rust:1.55.0-bullseye@sha256:81428aaedcfa28385c2bfd7e37d3e8f146b70f52526ef229ad94f50cf6bc7938
-  - --build-arg=DEBIAN_IMAGE=index.docker.io/library/debian:bullseye@sha256:2c22645bfe97aa1ed1c930adf5970fee3454f9a42a19214051ec677cba805712
+  - --build-arg=RUST_IMAGE=index.docker.io/library/rust:1.55.0-bullseye@sha256:1b0490ed32286c0995520b64b6b6a98cc32b6e1be44228fdd3e75a7f1105ca28
+  - --build-arg=DEBIAN_IMAGE=index.docker.io/library/debian:bullseye@sha256:826d8850098b954c3d67c2e45ea7a08fa681c128126ba01b35bd2689b1bb2e04
   - --build-arg=DISTROLESS_IMAGE=gcr.io/distroless/base-debian11:nonroot@sha256:21a86d92771aa0ee8fc238e94f1a3a5fbb2c0ad55adda8ad626a6dd1e7faaa8f
   - --build-arg=NPROC=12
   - --build-arg=BITCOIN_REPOSITORY=https://github.com/bitcoin/bitcoin
-  - --build-arg=BITCOIN_REVISION=991753e4d50ea5c973f4d3330e5afba797b1b1e7
+  - --build-arg=BITCOIN_REVISION=810ce36d54e4a047f27a099e8295ddadfced75a9
   description: |-
     bitcoind, bitcoin-cli, bitcoin-tx, and
     bitcoin-util from `master` branch.
-  image: index.docker.io/utxobr/bitcoin@sha256:02b58a0d46b61e0d4ea11f07f91a4685c85b6497d815ff68fe3eb3934aa13dea
+  image: index.docker.io/utxobr/bitcoin@sha256:7661547d60a19404172c29cda2ff6ece3a59acbca1b84a8a44d5632149aa2cb1
   tags:
   - master
